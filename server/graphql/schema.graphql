@@ -1,0 +1,36 @@
+# schema.graphql
+
+type User {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  cars: [Car!]!
+  delete: Int
+}
+
+type Car {
+  id: ID!
+  name: String!
+  year: Int!
+  make: String!
+  model: String!
+  price: Float!
+  user: User
+  delete: Int
+}
+
+type Query {
+  getUser(id: ID!): User
+  getUsers: [User!]!
+  getCar(id: ID!): Car
+  getCars: [Car!]!
+}
+
+type Mutation {
+  createUser(firstname: String!, lastname: String!): User
+  createCar(name: String!, year: Int!, make: String!, model: String!, price: Float!, userId: ID): Car
+  updateCar(id: ID!, name: String!, year: Int!, make: String!, model: String!, price: Float!): Car
+  updateUser(id: ID!, firstname: String, lastname: String): User
+  deleteCar(id: ID!): Int
+  deleteUser(id: ID!): Int
+}
